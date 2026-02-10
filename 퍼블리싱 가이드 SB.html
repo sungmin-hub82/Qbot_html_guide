@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>퍼블리싱 가이드</title>
+
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com);
+
+        blockquote,
+        body,
+        button,
+        code,
+        dd,
+        div,
+        dl,
+        dt,
+        fieldset,
+        form,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        input,
+        legend,
+        li,
+        ol,
+        p,
+        pre,
+        select,
+        table,
+        td,
+        textarea,
+        th,
+        ul {
+            word-break: break-word;
+        }
+
+        .content-service-view {
+            font-family: "Noto Sans", "Noto Sans KR", sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .tbl-scroll {
+            overflow-x: auto;
+            margin-bottom: 30px;
+        }
+
+        .tbl-scroll table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .tbl-scroll th,
+        .tbl-scroll td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            vertical-align: top;
+        }
+
+        .tbl-scroll th {
+            background: #eee;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .guide-code {
+            background: #111;
+            color: #0f0;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-top: 6px;
+            white-space: pre-wrap;
+        }
+
+        .guide-desc {
+            font-size: 13px;
+            color: #444;
+        }
+
+        .ir-hidden {
+            position: absolute;
+            margin: -1px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="content-service-view">
+
+        <div class="tbl-scroll">
+            <table>
+                <caption>퍼블리싱 가이드 (HTML / CSS)</caption>
+                <thead>
+                    <tr>
+                        <th style="width:15%">구분</th>
+                        <th style="width:25%">사용 상황</th>
+                        <th>가이드 설명</th>
+                        <th style="width:30%">복사해서 사용할 코드</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!-- 제목 -->
+                    <tr>
+                        <th>제목</th>
+                        <td>페이지 상단 제목</td>
+                        <td class="guide-desc">
+                            페이지의 주요 제목에는 <strong>&lt;h2&gt;</strong> 태그를 사용합니다.<br>
+                            디자인은 class로만 제어하며, 태그 변경은 하지 않습니다.
+                        </td>
+                        <td>
+                            <span class="ir-hidden">페이지 제목용 h2 태그 사용</span>
+                            <div class="guide-code">
+                                &lt;h2 class="title-lg"&gt;페이지 제목&lt;/h2&gt;
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- 서브 타이틀 -->
+                    <tr>
+                        <th>소제목</th>
+                        <td>섹션 구분</td>
+                        <td class="guide-desc">
+                            섹션 단위 구분 시 <strong>&lt;h3&gt;</strong> 태그를 사용합니다.<br>
+                            h2 다음 단계에서만 사용합니다.
+                        </td>
+                        <td>
+                            <span class="ir-hidden">섹션 구분용 h3 태그</span>
+                            <div class="guide-code">
+                                &lt;h3 class="title-md"&gt;섹션 제목&lt;/h3&gt;
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- 본문 -->
+                    <tr>
+                        <th>본문</th>
+                        <td>설명 텍스트</td>
+                        <td class="guide-desc">
+                            일반 텍스트는 <strong>&lt;p&gt;</strong> 태그를 사용합니다.<br>
+                            줄바꿈을 위해 br 태그를 남용하지 않습니다.
+                        </td>
+                        <td>
+                            <span class="ir-hidden">본문 텍스트 p 태그</span>
+                            <div class="guide-code">
+                                &lt;p&gt;설명 텍스트를 입력하세요.&lt;/p&gt;
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- 리스트 -->
+                    <tr>
+                        <th>리스트</th>
+                        <td>항목 나열</td>
+                        <td class="guide-desc">
+                            순서 없는 목록은 <strong>&lt;ul&gt;</strong>과 <strong>&lt;li&gt;</strong>를 사용합니다.<br>
+                            점 스타일은 CSS로 제어합니다.
+                        </td>
+                        <td>
+                            <span class="ir-hidden">리스트 ul li 사용</span>
+                            <div class="guide-code">
+                                &lt;ul class="list-dot"&gt;
+                                &lt;li&gt;항목 1&lt;/li&gt;
+                                &lt;li&gt;항목 2&lt;/li&gt;
+                                &lt;/ul&gt;
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- 버튼 -->
+                    <tr>
+                        <th>버튼</th>
+                        <td>액션 버튼</td>
+                        <td class="guide-desc">
+                            클릭 액션이 있는 경우에만 <strong>&lt;button&gt;</strong> 태그를 사용합니다.<br>
+                            링크 이동은 a 태그를 사용합니다.
+                        </td>
+                        <td>
+                            <span class="ir-hidden">버튼 태그 사용</span>
+                            <div class="guide-code">
+                                &lt;button class="btn-primary"&gt;확인&lt;/button&gt;
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

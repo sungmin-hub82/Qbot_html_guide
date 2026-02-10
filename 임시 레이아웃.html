@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>필터 알람 가이드 - 검색 최적화</title>
+
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com);
+
+        /* ===== 기존 스타일 ===== */
+        blockquote,
+        body,
+        button,
+        code,
+        dd,
+        div,
+        dl,
+        dt,
+        fieldset,
+        form,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        input,
+        legend,
+        li,
+        ol,
+        p,
+        pre,
+        select,
+        table,
+        td,
+        textarea,
+        th,
+        ul {
+            word-break: break-word;
+        }
+
+        .content-service-view {
+            font-family: "Noto Sans", "Noto Sans KR", sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .content-service-view .lg-red {
+            color: #ec455a !important;
+        }
+
+        .c-orange {
+            color: #ff8c00;
+            font-weight: bold;
+        }
+
+        .c-green {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+
+        .content-service-view .ir-hidden {
+            position: absolute;
+            margin: -1px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+        }
+
+        .tbl-scroll {
+            overflow-x: auto;
+            margin-bottom: 40px;
+        }
+
+        .tbl-scroll table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .tbl-scroll th,
+        .tbl-scroll td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .tbl-scroll th {
+            background: #eee;
+            font-weight: 600;
+        }
+
+        /* ===== 퍼블리싱 가이드 스타일 ===== */
+        .guide-section {
+            margin-top: 60px;
+        }
+
+        .guide-section h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .guide-box {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 30px;
+        }
+
+        .guide-preview {
+            background: #f7f7f7;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .guide-code {
+            background: #111;
+            color: #0f0;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            overflow-x: auto;
+        }
+
+        .copy-btn {
+            margin-top: 6px;
+            font-size: 12px;
+            padding: 4px 8px;
+            cursor: pointer;
+        }
+
+        .guide-tip {
+            margin-top: 6px;
+            font-size: 12px;
+            color: #555;
+        }
+
+        /* 가이드용 컴포넌트 */
+        .title-lg {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .list-dot li {
+            position: relative;
+            padding-left: 10px;
+            margin-bottom: 4px;
+        }
+
+        .list-dot li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="content-service-view">
+
+        <!-- ===== 기존 테이블 가이드 ===== -->
+        <div class="tbl-scroll">
+            <table>
+                <caption>필터 수명 알람 가이드</caption>
+                <thead>
+                    <tr>
+                        <th colspan="3">구분</th>
+                        <th>100~11%</th>
+                        <th>10~1%</th>
+                        <th>0%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="2"><strong>비정품 알림 On</strong></td>
+                        <td rowspan="2">정품필터 해제 불가</td>
+                        <th>Display</th>
+                        <td class="c-green">초록색</td>
+                        <td class="c-orange">주황색</td>
+                        <td class="lg-red">빨간색</td>
+                    </tr>
+                    <tr>
+                        <th>해제방법</th>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>자동 인식</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ===== 퍼블리싱 가이드 ===== -->
+        <div class="guide-section">
+            <h2>퍼블리싱 가이드 (복사해서 사용)</h2>
+
+            <!-- 제목 -->
+            <div class="guide-box">
+                <strong>제목</strong>
+
+                <div class="guide-preview">
+                    <h3 class="title-lg">이건 페이지 제목입니다</h3>
+                </div>
+
+                <pre class="guide-code" id="code-title">
+&lt;h3 class="title-lg"&gt;이건 페이지 제목입니다&lt;/h3&gt;
+            </pre>
+                <button class="copy-btn" onclick="copyCode('code-title')">코드 복사</button>
+
+                <div class="guide-tip">
+                    ✔ 텍스트만 수정하세요 / ❌ class명 변경 금지
+                </div>
+            </div>
+
+            <!-- 리스트 -->
+            <div class="guide-box">
+                <strong>리스트</strong>
+
+                <div class="guide-preview">
+                    <ul class="list-dot">
+                        <li>항목 1</li>
+                        <li>항목 2</li>
+                        <li>항목 3</li>
+                    </ul>
+                </div>
+
+                <pre class="guide-code" id="code-list">
+&lt;ul class="list-dot"&gt;
+  &lt;li&gt;항목 1&lt;/li&gt;
+  &lt;li&gt;항목 2&lt;/li&gt;
+  &lt;li&gt;항목 3&lt;/li&gt;
+&lt;/ul&gt;
+            </pre>
+                <button class="copy-btn" onclick="copyCode('code-list')">코드 복사</button>
+            </div>
+
+            <!-- 버튼 -->
+            <div class="guide-box">
+                <strong>버튼</strong>
+
+                <div class="guide-preview">
+                    <button class="btn-primary">확인</button>
+                </div>
+
+                <pre class="guide-code" id="code-btn">&lt;button class="btn-primary"&gt;확인&lt;/button&gt;</pre>
+                <button class="copy-btn" onclick="copyCode('code-btn')">코드 복사</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyCode(id) {
+            const text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text);
+            alert('코드가 복사되었습니다!');
+        }
+    </script>
+
+</body>
+
+</html>
