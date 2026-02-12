@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛠 Qbot 수리자문 퍼블리싱 가이드</title>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com);
+
+        /* ===== [공통] 기존 레이아웃 베이스 스타일 ===== */
+        blockquote,
+        body,
+        button,
+        code,
+        dd,
+        div,
+        dl,
+        dt,
+        fieldset,
+        form,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        input,
+        legend,
+        li,
+        ol,
+        p,
+        pre,
+        select,
+        table,
+        td,
+        textarea,
+        th,
+        ul {
+            word-break: break-word;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .content-service-view {
+            font-family: "Noto Sans", "Noto Sans KR", sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 20px;
+            color: #444;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* 여백 */
+        .mb_20 {
+            margin-bottom: 20px;
+        }
+
+        /* 강조 색상 */
+        .content-service-view .lg-red {
+            color: #ec455a !important;
+        }
+
+        .content-service-view .c-gray {
+            color: #999 !important;
+        }
+
+        .c-orange {
+            color: #ff8c00;
+            font-weight: bold;
+        }
+
+        .c-green {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+
+        /* 기존 타이틀 스타일 (.tit) */
+        .content-service-view .tit {
+            position: relative;
+            margin: 60px 0 15px 0;
+            padding: 0;
+            font-weight: 600;
+            font-size: 22px;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        .content-service-view .tit:before {
+            content: "";
+            overflow: hidden;
+            position: absolute;
+            left: 0;
+            top: -8px;
+            width: 25px;
+            height: 3px;
+            background: #ec455a;
+        }
+
+        .content-service-view .tit:first-child {
+            margin-top: 0;
+        }
+
+        /* 기존 서브타이틀 스타일 (.sub-tit) */
+        .content-service-view .sub-tit {
+            position: relative;
+            margin: 30px 0 10px;
+            padding: 0 0 0 22px;
+            font-size: 17px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .content-service-view .sub-tit:before {
+            content: "";
+            overflow: hidden;
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #999 url(https://gscs.lge.com:/gscs/support/fileupload/downloadFile.do?fileId=CYfUaCPKDZkbFewB3OjoAA&portalId=P1) no-repeat 4px 50%;
+            background-size: 10px;
+        }
+
+        /* 기존 리스트 스타일 (.bul-list) */
+        .content-service-view .bul-list {
+            margin: 15px 0 20px;
+            list-style: none;
+        }
+
+        .content-service-view .bul-list li {
+            position: relative;
+            margin-top: 7px;
+            padding-left: 12px;
+            line-height: 1.5;
+        }
+
+        .content-service-view .bul-list li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #ec455a;
+        }
+
+        /* 기존 테이블 스타일 (.tbl-scroll) */
+        .content-service-view .tbl-scroll {
+            overflow-x: auto;
+            margin: 20px 0 40px;
+        }
+
+        .content-service-view .tbl-scroll table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .content-service-view .tbl-scroll th,
+        .content-service-view .tbl-scroll td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .content-service-view .tbl-scroll th {
+            background: #eee;
+            font-weight: 600;
+            color: #222;
+        }
+
+        /* [추가] 테이블 가이드 스타일 (Section 0, 4 적용) */
+        .content-service-view table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-top: 2px solid #222;
+        }
+
+        .content-service-view th,
+        .content-service-view td {
+            padding: 10px 12px;
+            font-size: 13px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .content-service-view th {
+            background: #f5f5f5;
+            font-weight: 600;
+            text-align: left;
+            width: 200px;
+        }
+
+        /* 기존 tbl-scroll 테이블 스타일 보호 */
+        .content-service-view .tbl-scroll table {
+            border-top: 0;
+        }
+
+        .content-service-view .tbl-scroll th {
+            width: auto;
+        }
+
+        /* ===== [가이드] 관리용 레이아웃 스타일 ===== */
+        .guide-section {
+            margin-top: 80px;
+            border-top: 2px dashed #ccc;
+            padding-top: 40px;
+        }
+
+        .guide-section>h2 {
+            font-size: 24px;
+            color: #000;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .guide-box {
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            background: #fff;
+        }
+
+        .guide-box strong {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #ec455a;
+        }
+
+        .guide-preview {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #f0f0f0;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .guide-code {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        .copy-btn {
+            margin-top: 10px;
+            background: #444;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #ec455a;
+        }
+
+        .guide-tip {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .content-service-view {
+            font-family: "Noto Sans KR", sans-serif;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .guide-box {
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            background: #fff;
+        }
+
+        .guide-box strong {
+            display: block;
+            margin-bottom: 15px;
+            color: #ec455a;
+        }
+
+        /* 입력창 스타일 */
+        .input-group {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-text {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .input-text:focus {
+            border-color: #ec455a;
+        }
+
+        .guide-code {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .copy-btn {
+            background: #444;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background: #ec455a;
+        }
+
+        .tit {
+            position: relative;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .sub-tit {
+            position: relative;
+            padding-left: 22px;
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        /* 넘버링 스타일 추가 */
+        .content-service-view .sub-tit .num {
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 17px;
+            height: 17px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 11px;
+            color: #fff;
+            background: #999;
+            line-height: 17px;
+        }
+
+        /* 추가 가이드 스타일 */
+        .ctrl-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #eee;
+        }
+
+        .num-input {
+            width: 60px;
+            text-align: center;
+            font-weight: bold;
+            color: #ec455a;
+        }
+
+        .btn-reset {
+            background: #eee;
+            color: #666;
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .preview-area {
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px dashed #bbb;
+            background: #fff;
+        }
+
+        /* 테이블 가이드 전용 스타일 */
+        .btns {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btns button {
+            padding: 8px 16px;
+            border: 1px solid #ccc;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .btns button.primary {
+            background: #111;
+            color: #fff;
+            border-color: #111;
+        }
+
+        iframe#preview {
+            width: 100%;
+            height: 420px;
+            border: 1px solid #ddd;
+        }
+
+        .ck-editor__editable {
+            min-height: 200px;
+        }
+
+        /* 에디터 내부 테이블 스타일 */
+        .ck-editor__editable table {
+            width: 100% !important;
+        }
+
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-service-view">
+        <h2 class="mb_20">🛠 <b class="lg-red">Qbot</b> 수리자문 퍼블리싱 가이드</h2>
+
+        <!-- 0. 테이블 가이드 -->
+        <div class="guide-box">
+            <strong>0. 테이블 가이드 (엑셀 변환)</strong>
+
+            <div style="margin-bottom: 30px;">
+                <h3 style="font-size: 16px; margin-bottom: 10px; font-weight: bold;">① 콘텐츠 작성 (에디터)</h3>
+                <p style="font-size: 13px; color: #666; margin-bottom: 5px;">: 엑셀을 복사 + 붙여넣기 해주세요!</p>
+                <div class="btns" style="margin-bottom: 10px; margin-top: 0;">
+                    <button onclick="insertTableTemplate()">기본 테이블 삽입</button>
+                </div>
+                <textarea id="editor"></textarea>
+            </div>
+
+            <div style="margin-bottom: 30px;">
+                <h3 style="font-size: 16px; margin-bottom: 10px; font-weight: bold;">② HTML 코드변환 (직접 수정 가능)</h3>
+                <p style="font-size: 13px; color: #666; margin-bottom: 5px;">: 표 헤드(head)는 <b class="red">&lt;td&gt; ➡️
+                        &lt;th&gt;</b>로 바꿔주세요!</p>
+                <textarea id="output" class="input-text"
+                    style="width: 100%; min-height: 220px; font-family: monospace; font-size: 13px;"></textarea>
+                <div class="btns">
+                    <button class="primary" id="copyBtn">HTML 복사</button>
+                    <button id="previewBtn">미리보기 새로고침</button>
+                </div>
+            </div>
+
+            <div>
+                <h3 style="font-size: 16px; margin-bottom: 10px; font-weight: bold;">③ 실서비스 미리보기</h3>
+                <iframe id="preview"></iframe>
+            </div>
+        </div>
+
+        <!-- 1. 대제목 생성기 (넘버링) -->
+        <div class="guide-box">
+            <strong>1. 대제목 생성기 (.sub-tit + .num)</strong>
+
+            <div class="ctrl-group">
+                <span>현재 번호:</span>
+                <input type="number" id="current-num" class="input-text num-input" value="1">
+                <input type="text" id="input-sub-text" class="input-text" placeholder="증상 내용을 입력하세요 (예: 증상, 원인, 조치방법)"
+                    value="증상">
+                <button class="copy-btn" onclick="generateNumberedTitle()">코드 생성 및 복사</button>
+                <button class="btn-reset" onclick="resetNum()">번호 초기화</button>
+            </div>
+
+            <p style="font-size:13px; color:#666; margin-bottom:5px;">▼ 복사될 코드 미리보기</p>
+            <div class="guide-code">
+                <code id="preview-code">&lt;h2 class="sub-tit"&gt;
+    &lt;span class="num"&gt;1&lt;/span&gt;증상
+&lt;/h2&gt;</code>
+            </div>
+
+            <p style="font-size:13px; color:#666; margin-top:15px;">▼ 실제 화면 적용 모습</p>
+            <div class="preview-area" id="real-preview">
+                <h2 class="sub-tit"><span class="num">1</span>증상</h2>
+            </div>
+        </div>
+
+        <!-- 2. 소제목 커스텀 -->
+        <div class="guide-box">
+            <strong>2. 소제목 생성기 (.sub-tit)</strong>
+            <div class="input-group">
+                <input type="text" id="input-sub" class="input-text" placeholder="소제목 내용을 입력하세요" value="확인 사항">
+                <button class="copy-btn" onclick="generateAndCopy('sub')">코드 생성 및 복사</button>
+            </div>
+            <div class="guide-code">
+                <code id="preview-sub">&lt;h3 class="sub-tit"&gt;확인 사항&lt;/h3&gt;</code>
+            </div>
+        </div>
+
+        <!-- 3. 설명 문구 생성기 -->
+        <div class="guide-box">
+            <strong>3. 설명 문구 생성기 (p)</strong>
+            <div class="input-group" style="align-items: flex-start;">
+                <textarea id="input-desc" class="input-text" style="height:80px; resize:vertical;"
+                    placeholder="설명 문구를 입력하세요 (엔터로 줄바꿈)">- 해외 제품 국내 사용 가능 여부</textarea>
+                <button class="copy-btn" onclick="generateAndCopy('desc')" style="margin-top:0;">코드 생성 및 복사</button>
+            </div>
+            <div class="guide-code">
+                <code id="preview-desc">&lt;p&gt;- 해외 제품 국내 사용 가능 여부&lt;/p&gt;</code>
+            </div>
+        </div>
+
+        <!-- 4. HTML 실시간 미리보기 -->
+        <div class="guide-box">
+            <strong>4. HTML 실시간 미리보기</strong>
+            <p style="font-size:13px; color:#666; margin-bottom:10px;">위에서 생성한 코드를 아래 입력창에 붙여넣으면 실제 화면을 미리 볼 수 있습니다.</p>
+            <textarea id="html-input" class="input-text"
+                style="width:100%; height:150px; font-family:monospace; margin-bottom:15px; resize:vertical;"
+                placeholder="여기에 코드를 붙여넣으세요"></textarea>
+            <button class="copy-btn" onclick="copyFullHtml()" style="margin-bottom:15px;">전체 HTML 복사 (&lt;!DOCTYPE
+                html&gt; 포함)</button>
+            <div class="preview-area" id="html-preview" style="min-height:100px;">
+                <span style="color:#ccc;">미리보기 영역</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /**
+         * @param {string} type - 요소 종류 (tit, sub, red 등)
+         */
+        function generateAndCopy(type) {
+            const inputVal = document.getElementById(`input-${type}`).value;
+            let generatedHtml = '';
+
+            // 타입별 태그 매핑
+            switch (type) {
+                case 'tit':
+                    generatedHtml = `<h2 class="tit">${inputVal}</h2>`;
+                    break;
+                case 'sub':
+                    generatedHtml = `<h3 class="sub-tit">${inputVal}</h3>`;
+                    break;
+                case 'desc':
+                    generatedHtml = `<p>${inputVal.replace(/\n/g, '<br>')}</p>`;
+                    break;
+            }
+
+            // 화면의 프리뷰 텍스트 업데이트 (시각적 피드백)
+            const previewElement = document.getElementById(`preview-${type}`);
+            previewElement.textContent = generatedHtml;
+
+            // 클립보드 복사
+            navigator.clipboard.writeText(generatedHtml).then(() => {
+                alert(`"${inputVal}" 문구가 포함된 코드가 복사되었습니다!`);
+            });
+        }
+
+        // 입력창에서 엔터 키 눌러도 바로 복사되게 설정
+        document.querySelectorAll('.input-text').forEach(input => {
+            input.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    if (this.tagName === 'TEXTAREA') return; // textarea는 줄바꿈 허용
+                    const type = this.id.split('-')[1];
+                    generateAndCopy(type);
+                }
+            });
+        });
+
+        function generateNumberedTitle() {
+            const numInput = document.getElementById('current-num');
+            const textInput = document.getElementById('input-sub-text');
+            const currentNum = numInput.value;
+            const text = textInput.value;
+
+            // 1. HTML 코드 생성 (포맷 유지)
+            const generatedHtml = `<h2 class="sub-tit">\n    <span class="num">${currentNum}</span>${text}\n</h2>`;
+
+            // 2. 프리뷰 업데이트
+            document.getElementById('preview-code').textContent = generatedHtml;
+            document.getElementById('real-preview').innerHTML = `<h2 class="sub-tit"><span class="num">${currentNum}</span>${text}</h2>`;
+
+            // 3. 클립보드 복사
+            navigator.clipboard.writeText(generatedHtml).then(() => {
+                alert(`${currentNum}번 코드가 복사되었습니다. 다음 번호로 넘어갑니다.`);
+
+                // 4. 다음 번호를 위해 숫자 1 증가
+                numInput.value = parseInt(currentNum) + 1;
+            });
+        }
+
+        function resetNum() {
+            document.getElementById('current-num').value = 1;
+            alert('번호가 1번으로 초기화되었습니다.');
+        }
+
+        // HTML 미리보기 기능
+        document.getElementById('html-input').addEventListener('input', function () {
+            const val = this.value;
+            const preview = document.getElementById('html-preview');
+            if (!val.trim()) {
+                preview.innerHTML = '<span style="color:#ccc;">미리보기 영역</span>';
+            } else {
+                preview.innerHTML = val;
+            }
+        });
+
+        function copyFullHtml() {
+            const content = document.getElementById('html-input').value;
+            // 현재 페이지의 모든 스타일을 가져옵니다.
+            const styles = Array.from(document.querySelectorAll('style')).map(s => s.innerHTML).join('\n');
+
+            const fullHtml = `<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview</title>
+    <style>${styles}</style>
+</head>
+<body>
+    <div class="content-service-view">
+${content}
+    </div>
+</body>
+</html>`;
+
+            navigator.clipboard.writeText(fullHtml).then(() => {
+                alert('전체 HTML 코드가 복사되었습니다!');
+            });
+        }
+
+        /* =====================
+           테이블 가이드 로직
+        ===================== */
+        let editor;
+        let isEditingCms = false;
+        const outputEl = document.getElementById('output');
+
+        ClassicEditor.create(document.querySelector('#editor'), {
+            toolbar: [
+                'heading',
+                '|',
+                'bold', 'italic', 'link',
+                'bulletedList', 'numberedList',
+                '|',
+                'undo', 'redo'
+            ]
+        }).then(ed => {
+            editor = ed;
+            renderFromEditor();
+            editor.model.document.on('change:data', renderFromEditor);
+        });
+
+        function insertTableTemplate() {
+            const template = `
+<table style="width: 100%;">
+    <tbody>
+        <tr>
+            <th scope="row">제&nbsp;&nbsp;&nbsp;목</th>
+            <td colspan="3"></td>
+        </tr>
+        <tr>
+            <th>적용 모델</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>제품군</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>대상 제번</th>
+            <td colspan="3"></td>
+        </tr>
+        <tr>
+            <th>조치 방법</th>
+            <td colspan="3"></td>
+        </tr>
+    </tbody>
+</table>`;
+
+            if (editor) {
+                const viewFragment = editor.data.processor.toView(template);
+                const modelFragment = editor.data.toModel(viewFragment);
+                editor.model.insertContent(modelFragment);
+            }
+        }
+
+        function normalize(html) {
+            return html
+                .replace(/<h2>/g, '<h2 class="tit">')
+                .replace(/<h3>/g, '<h3 class="sub-tit">')
+                .replace(/<ul>/g, '<ul class="bul-list">')
+                .replace(/ style="[^"]*"/g, '')
+                .replace(/ class="[^"]*"/g, '')
+
+                // ❌ figure 태그 제거 (CKEditor 테이블 래퍼)
+                .replace(/<figure[^>]*>/g, '')
+                .replace(/<\/figure>/g, '')
+
+                // 🔥 테이블 스타일 강제 적용 (width 100%)
+                .replace(/<table/g, '<table style="width: 100%;"')
+                .replace(
+                    /<tr>\s*<td>(.*?)<\/td>\s*<td>/g,
+                    '<tr><th scope="row">$1</th><td>'
+                );
+        }
+
+        function renderFromEditor() {
+            if (!editor) return;
+            if (isEditingCms) return;
+
+            const content = normalize(editor.getData());
+            outputEl.value = content;
+            renderFromCms();
+        }
+
+        function renderFromCms() {
+            const cmsHtml = outputEl.value;
+            const previewHtml = `
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<style>
+.content-service-view {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Noto Sans KR", sans-serif;
+}
+.content-service-view .tit {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.content-service-view .sub-tit {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 20px 0 10px;
+}
+.content-service-view p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+.content-service-view table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  border-top: 2px solid #222;
+}
+.content-service-view th,
+.content-service-view td {
+  padding: 10px 12px;
+  font-size: 13px;
+  border-bottom: 1px solid #ddd;
+}
+.content-service-view th {
+  background: #f5f5f5;
+  font-weight: 600;
+  text-align: left;
+  width: 200px;
+}
+</style>
+</head>
+<body>
+<div class="content-service-view">
+${cmsHtml}
+</div>
+</body>
+</html>
+`;
+            const iframe = document.getElementById('preview');
+            iframe.srcdoc = previewHtml;
+        }
+
+        outputEl.addEventListener('focus', () => { isEditingCms = true; });
+        outputEl.addEventListener('blur', () => { isEditingCms = false; });
+        outputEl.addEventListener('input', renderFromCms);
+        document.getElementById('previewBtn').addEventListener('click', renderFromCms);
+        document.getElementById('copyBtn').addEventListener('click', () => {
+            outputEl.select();
+            document.execCommand('copy');
+            alert('HTML이 복사되었습니다.');
+        });
+    </script>
+
+</body>
+
+</html>
